@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: df6adb98ec669aa408ddfc984d2ec8bd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Scripts/WallMovable.cs
+  uploadId: 388513

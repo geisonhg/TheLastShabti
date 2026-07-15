@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c54596d8a698c5b4f8edf8b9cfc74ccb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Controller/CameraManager.cs
+  uploadId: 388513

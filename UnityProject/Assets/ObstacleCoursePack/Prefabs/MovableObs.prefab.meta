@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1d998f3b2007ad14c900d3cecab26ab4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Prefabs/MovableObs.prefab
+  uploadId: 388513

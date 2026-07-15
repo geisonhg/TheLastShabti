@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1240 900"
+     width="1240" height="900"
+     font-family="Arial, Helvetica, sans-serif">
+
+  <!-- ================================================================
+       THE LAST SHABTI — 2D Level Map
+       Game Design Module — Semester 1
+       Shows: player route, 5 sections, platforms, obstacles, checkpoint
+       ================================================================ -->
+
+  <!-- Paper background -->
+  <rect width="1240" height="900" fill="#F7F2E8"/>
+
+  <!-- Subtle grid lines to suggest a planning document -->
+  <g opacity="0.12" stroke="#8B7A5A" stroke-width="0.5">
+    <line x1="0" y1="50"  x2="1240" y2="50"/>
+    <line x1="0" y1="100" x2="1240" y2="100"/>
+    <line x1="0" y1="150" x2="1240" y2="150"/>
+    <line x1="0" y1="200" x2="1240" y2="200"/>
+    <line x1="0" y1="250" x2="1240" y2="250"/>
+    <line x1="0" y1="300" x2="1240" y2="300"/>
+    <line x1="0" y1="350" x2="1240" y2="350"/>
+    <line x1="0" y1="400" x2="1240" y2="400"/>
+    <line x1="0" y1="450" x2="1240" y2="450"/>
+    <line x1="0" y1="500" x2="1240" y2="500"/>
+    <line x1="0" y1="550" x2="1240" y2="550"/>
+    <line x1="0" y1="600" x2="1240" y2="600"/>
+    <line x1="0" y1="650" x2="1240" y2="650"/>
+    <line x1="0" y1="700" x2="1240" y2="700"/>
+    <line x1="0" y1="750" x2="1240" y2="750"/>
+    <line x1="0" y1="800" x2="1240" y2="800"/>
+    <line x1="50"  y1="0" x2="50"  y2="900"/>
+    <line x1="100" y1="0" x2="100" y2="900"/>
+    <line x1="150" y1="0" x2="150" y2="900"/>
+    <line x1="200" y1="0" x2="200" y2="900"/>
+    <line x1="250" y1="0" x2="250" y2="900"/>
+    <line x1="300" y1="0" x2="300" y2="900"/>
+    <line x1="350" y1="0" x2="350" y2="900"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="450" y1="0" x2="450" y2="900"/>
+    <line x1="500" y1="0" x2="500" y2="900"/>
+    <line x1="550" y1="0" x2="550" y2="900"/>
+    <line x1="600" y1="0" x2="600" y2="900"/>
+    <line x1="650" y1="0" x2="650" y2="900"/>
+    <line x1="700" y1="0" x2="700" y2="900"/>
+    <line x1="750" y1="0" x2="750" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="850" y1="0" x2="850" y2="900"/>
+    <line x1="900" y1="0" x2="900" y2="900"/>
+    <line x1="950" y1="0" x2="950" y2="900"/>
+    <line x1="1000" y1="0" x2="1000" y2="900"/>
+    <line x1="1050" y1="0" x2="1050" y2="900"/>
+    <line x1="1100" y1="0" x2="1100" y2="900"/>
+    <line x1="1150" y1="0" x2="1150" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+
+  <!-- ============================================================
+       Title block
+       ============================================================ -->
+  <rect x="20" y="12" width="1200" height="50" rx="4"
+        fill="#2A1A0A" fill-opacity="0.04" stroke="#8B6B3D" stroke-width="1"/>
+  <text x="620" y="32" text-anchor="middle" font-size="17" font-weight="bold"
+        fill="#2A1A0A" letter-spacing="2">THE LAST SHABTI</text>
+  <text x="620" y="52" text-anchor="middle" font-size="11" fill="#5A4A3A">
+    2D Level Map — Game Design Module — Section layout and player route (side-elevation view)
+  </text>
+
+  <!-- ============================================================
+       Pyramid silhouette (background context, low opacity)
+       ============================================================ -->
+  <polygon points="620,72 100,840 1140,840"
+           fill="#C4A265" fill-opacity="0.07"
+           stroke="#8B6B3D" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="620" y="68" text-anchor="middle" font-size="9" fill="#8B6B3D" opacity="0.6">
+    pyramid exterior
+  </text>
+
+  <!-- ============================================================
+       SECTION 1 — Burial Chamber
+       Bottom-left — dark blue/indigo tones
+       ============================================================ -->
+  <rect x="115" y="628" width="245" height="182" rx="3"
+        fill="#1A253A" stroke="#2D3D60" stroke-width="2"/>
+  <!-- Section label -->
+  <text x="237" y="649" text-anchor="middle" font-size="10" font-weight="bold"
+        fill="#6A8ABB" letter-spacing="1">SECTION 1</text>
+  <text x="237" y="662" text-anchor="middle" font-size="9" fill="#8AAAD8">
+    Burial Chamber
+  </text>
+  <!-- Floor platform -->
+  <rect x="130" y="776" width="215" height="10" rx="2" fill="#C4A265" opacity="0.8"/>
+  <!-- Starting platform (elevated) -->
+  <rect x="135" y="748" width="70" height="8" rx="2" fill="#C4A265"/>
+  <!-- Platform 2 -->
+  <rect x="230" y="730" width="70" height="8" rx="2" fill="#C4A265"/>
+  <!-- Platform 3 (near stairs) -->
+  <rect x="280" y="710" width="65" height="8" rx="2" fill="#C4A265"/>
+  <!-- Staircase (short, 4 steps) -->
+  <rect x="294" y="750" width="42" height="7"  rx="1" fill="#A88B50"/>
+  <rect x="300" y="743" width="36" height="7"  rx="1" fill="#A88B50"/>
+  <rect x="306" y="736" width="30" height="7"  rx="1" fill="#A88B50"/>
+  <rect x="312" y="729" width="24" height="7"  rx="1" fill="#A88B50"/>
+  <!-- Burial jars prop icons -->
+  <ellipse cx="155" cy="745" rx="7" ry="10" fill="#7A5538"/>
+  <ellipse cx="170" cy="746" rx="6" ry="9"  fill="#7A5538"/>
+  <!-- Wall torch icons -->
+  <rect x="340" y="680" width="5" height="12" rx="1" fill="#5A3A1A"/>
+  <polygon points="342,677 340,680 344,680" fill="#E8880A"/>
+  <rect x="128" y="680" width="5" height="12" rx="1" fill="#5A3A1A"/>
+  <polygon points="130,677 128,680 132,680" fill="#E8880A"/>
+  <!-- Scarab wall decoration icon -->
+  <rect x="195" y="672" width="18" height="22" rx="2" fill="#2A3D55"/>
+  <ellipse cx="204" cy="683" rx="5" ry="6" fill="#3A5A80"/>
+  <!-- Blue lighting glow suggestion -->
+  <circle cx="237" cy="720" r="40" fill="#1A3A6A" fill-opacity="0.15"/>
+  <!-- Dim wall lights -->
+  <circle cx="145" cy="685" r="6" fill="#2A4A8A" fill-opacity="0.4"/>
+  <circle cx="340" cy="685" r="6" fill="#2A4A8A" fill-opacity="0.4"/>
+
+  <!-- ============================================================
+       SECTION 2 — Collapsed Gallery
+       Middle-left — transitional, slightly warmer blue
+       ============================================================ -->
+  <rect x="335" y="478" width="265" height="172" rx="3"
+        fill="#202C3F" stroke="#374F6F" stroke-width="2"/>
+  <text x="467" y="498" text-anchor="middle" font-size="10" font-weight="bold"
+        fill="#6A8ABB" letter-spacing="1">SECTION 2</text>
+  <text x="467" y="511" text-anchor="middle" font-size="9" fill="#8AAAD8">
+    Collapsed Gallery
+  </text>
+  <!-- Floor (broken, with gaps) -->
+  <rect x="345" y="620" width="70" height="10" rx="2" fill="#C4A265" opacity="0.8"/>
+  <!-- Gap in floor (broken section) -->
+  <rect x="430" y="620" width="50" height="10" rx="2" fill="#C4A265" opacity="0.8"/>
+  <!-- another gap here (the gap between is the fall zone) -->
+  <rect x="497" y="620" width="95" height="10" rx="2" fill="#C4A265" opacity="0.8"/>
+
+  <!-- Platforms for medium jumps -->
+  <rect x="345" y="580" width="70" height="8" rx="2" fill="#C4A265"/>
+  <rect x="435" y="560" width="60" height="8" rx="2" fill="#C4A265"/>
+  <rect x="520" y="542" width="65" height="8" rx="2" fill="#C4A265"/>
+
+  <!-- Ramp -->
+  <polygon points="540,618 590,618 590,552" fill="#B8963A" opacity="0.85"/>
+  <text x="572" y="595" text-anchor="middle" font-size="8" fill="#F7E8C0">ramp</text>
+
+  <!-- Fallen column landmark icons -->
+  <rect x="380" y="575" width="12" height="40" rx="3"
+        fill="#4A5A72" transform="rotate(-80, 386, 595)"/>
+  <rect x="460" y="555" width="12" height="35" rx="3"
+        fill="#4A5A72" transform="rotate(-75, 466, 572)"/>
+
+  <!-- Lower safety route (bottom of section, if player falls) -->
+  <text x="385" y="636" font-size="7" fill="#6A9ABB" opacity="0.8">lower route</text>
+  <path d="M 370,628 Q 440,640 580,630" stroke="#4A7A9A" stroke-width="1.5"
+        fill="none" stroke-dasharray="4,3"/>
+
+  <!-- ============================================================
+       SECTION 3 — Hall of Weights
+       Centre — grey-blue, obstacle section
+       ============================================================ -->
+  <rect x="555" y="330" width="265" height="168" rx="3"
+        fill="#283040" stroke="#445570" stroke-width="2"/>
+  <text x="687" y="350" text-anchor="middle" font-size="10" font-weight="bold"
+        fill="#7A9ABB" letter-spacing="1">SECTION 3</text>
+  <text x="687" y="363" text-anchor="middle" font-size="9" fill="#8AAAD8">
+    Hall of Weights
+  </text>
+
+  <!-- Floor -->
+  <rect x="565" y="468" width="245" height="10" rx="2" fill="#C4A265" opacity="0.7"/>
+
+  <!-- Static platforms -->
+  <rect x="572" y="438" width="60" height="8" rx="2" fill="#C4A265"/>
+  <rect x="710" y="420" width="60" height="8" rx="2" fill="#C4A265"/>
+
+  <!-- Moving platform (shown with arrow) -->
+  <rect x="640" y="425" width="55" height="8" rx="2" fill="#3A7A8A" stroke="#5AAABB" stroke-width="1"/>
+  <text x="667" y="421" text-anchor="middle" font-size="7" fill="#5AAABB">moving</text>
+  <path d="M 640,429 L 630,429" stroke="#5AAABB" stroke-width="1.5"
+        marker-end="url(#arrow-small)"/>
+  <path d="M 695,429 L 705,429" stroke="#5AAABB" stroke-width="1.5"
+        marker-end="url(#arrow-small)"/>
+
+  <!-- Rotating obstacle -->
+  <circle cx="668" cy="465" r="14" fill="none" stroke="#BB4444" stroke-width="2"
+          stroke-dasharray="5,3"/>
+  <line x1="654" y1="465" x2="682" y2="465" stroke="#BB4444" stroke-width="2"/>
+  <text x="668" y="485" text-anchor="middle" font-size="7" fill="#BB6666">rotating</text>
+
+  <!-- Falling block obstacle -->
+  <rect x="735" y="400" width="30" height="22" rx="2"
+        fill="#7A4422" stroke="#BB6633" stroke-width="1.5"/>
+  <text x="750" y="411" text-anchor="middle" font-size="7" fill="#F0C080">fall</text>
+  <path d="M 750,422 L 750,438" stroke="#BB6633" stroke-width="1.5"
+        stroke-dasharray="3,2" marker-end="url(#arrow-small)"/>
+
+  <!-- ============================================================
+       SECTION 4 — Shaft of Ra
+       Right side — tall, vertical platforming, transitioning to warm
+       ============================================================ -->
+  <rect x="790" y="138" width="185" height="222" rx="3"
+        fill="#2E2818" stroke="#6A5A30" stroke-width="2"/>
+  <!-- Warm light gradient effect at top -->
+  <defs>
+    <linearGradient id="warmGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#E87020" stop-opacity="0.35"/>
+      <stop offset="60%"  stop-color="#7A5A2A" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#2E2818" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Arrow marker for route arrows -->
+    <marker id="arrow-route" markerWidth="10" markerHeight="7"
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#C8A030"/>
+    </marker>
+    <marker id="arrow-small" markerWidth="6" markerHeight="5"
+            refX="5" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#5AAABB"/>
+    </marker>
+  </defs>
+  <rect x="790" y="138" width="185" height="222" rx="3" fill="url(#warmGrad)"/>
+
+  <text x="882" y="158" text-anchor="middle" font-size="10" font-weight="bold"
+        fill="#C8A030" letter-spacing="1">SECTION 4</text>
+  <text x="882" y="171" text-anchor="middle" font-size="9" fill="#E0C070">
+    Shaft of Ra
+  </text>
+
+  <!-- Vertical platforms at different heights -->
+  <rect x="800" y="316" width="65" height="8" rx="2" fill="#C4A265"/>
+  <rect x="870" y="296" width="65" height="8" rx="2" fill="#C4A265"/>
+  <rect x="800" y="272" width="60" height="8" rx="2" fill="#C4A265"/>
+  <rect x="870" y="250" width="60" height="8" rx="2" fill="#C4A265"/>
+  <!-- Moving platform -->
+  <rect x="826" y="230" width="52" height="8" rx="2"
+        fill="#3A7A8A" stroke="#5AAABB" stroke-width="1"/>
+  <text x="852" y="226" text-anchor="middle" font-size="7" fill="#5AAABB">moving</text>
+
+  <!-- Stairs at bottom of shaft -->
+  <rect x="803" y="338" width="40" height="6" rx="1" fill="#A88B50"/>
+  <rect x="809" y="332" width="34" height="6" rx="1" fill="#A88B50"/>
+  <rect x="815" y="326" width="28" height="6" rx="1" fill="#A88B50"/>
+
+  <!-- Warm light opening at top of shaft -->
+  <rect x="840" y="138" width="85" height="22" rx="2"
+        fill="#E87020" fill-opacity="0.45" stroke="#F0A040" stroke-width="1.5"/>
+  <text x="882" y="153" text-anchor="middle" font-size="8" fill="#FFD080">
+    light from above
+  </text>
+
+  <!-- CHECKPOINT marker -->
+  <polygon points="880,200 890,192 900,200 895,212 885,212"
+           fill="#28AA44" stroke="#60DD60" stroke-width="1.5"/>
+  <text x="905" y="202" font-size="8" fill="#60DD60">checkpoint</text>
+
+  <!-- "Can see rooftop" indicator -->
+  <path d="M 882,155 L 870,140" stroke="#E8C040" stroke-width="1"
+        stroke-dasharray="3,2"/>
+  <text x="860" y="136" text-anchor="middle" font-size="8" fill="#E8C040">rooftop visible</text>
+
+  <!-- ============================================================
+       SECTION 5 — Rooftop Sun Altar
+       Top — exterior, warm orange/sunset
+       ============================================================ -->
+  <rect x="410" y="52" width="460" height="108" rx="4"
+        fill="#7A3A0A" stroke="#C87020" stroke-width="2.5"/>
+  <!-- Sky gradient inside section 5 -->
+  <rect x="410" y="52" width="460" height="108" rx="4"
+        fill="#E06010" fill-opacity="0.28"/>
+
+  <text x="640" y="72" text-anchor="middle" font-size="10" font-weight="bold"
+        fill="#FFD070" letter-spacing="1">SECTION 5</text>
+  <text x="640" y="85" text-anchor="middle" font-size="9" fill="#FFB840">
+    Rooftop Sun Altar (exterior)
+  </text>
+
+  <!-- Pyramid roof surface -->
+  <rect x="420" y="136" width="440" height="10" rx="2" fill="#B8963A" opacity="0.7"/>
+
+  <!-- Obelisks framing the route -->
+  <rect x="438" y="88" width="12" height="52" rx="2" fill="#C4A265"/>
+  <polygon points="438,88 444,78 450,88" fill="#C8A030"/>
+  <rect x="832" y="88" width="12" height="52" rx="2" fill="#C4A265"/>
+  <polygon points="832,88 838,78 844,88" fill="#C8A030"/>
+
+  <!-- Final platforms (2-3 jumps) -->
+  <rect x="470" y="118" width="70" height="8" rx="2" fill="#C4A265"/>
+  <rect x="570" y="106" width="60" height="8" rx="2" fill="#C4A265"/>
+  <rect x="660" y="96" width="60" height="8" rx="2" fill="#C4A265"/>
+
+  <!-- Sun Altar (goal object) -->
+  <rect x="720" y="100" width="50" height="36" rx="3"
+        fill="#8A6A10" stroke="#C8A030" stroke-width="2"/>
+  <ellipse cx="745" cy="100" rx="22" ry="6" fill="#C8A030"/>
+  <!-- Sun rays around disc -->
+  <g stroke="#FFD060" stroke-width="1.5">
+    <line x1="745" y1="86" x2="745" y2="80"/>
+    <line x1="755" y1="88" x2="760" y2="83"/>
+    <line x1="760" y1="98" x2="766" y2="97"/>
+    <line x1="755" y1="108" x2="760" y2="112"/>
+    <line x1="735" y1="108" x2="730" y2="112"/>
+    <line x1="730" y1="98" x2="724" y2="97"/>
+    <line x1="735" y1="88" x2="730" y2="83"/>
+  </g>
+  <text x="745" y="123" text-anchor="middle" font-size="8" fill="#FFD070">SUN ALTAR</text>
+
+  <!-- FINISH marker -->
+  <circle cx="745" cy="88" r="8" fill="#C8A030" stroke="#FFD060" stroke-width="1.5"/>
+  <text x="745" y="92" text-anchor="middle" font-size="7" font-weight="bold" fill="#1A0A00">FIN</text>
+
+  <!-- ============================================================
+       PASSAGE CONNECTIONS between sections (corridors / doorways)
+       ============================================================ -->
+  <!-- S1 → S2 corridor -->
+  <rect x="355" y="598" width="18" height="30" rx="2"
+        fill="#1A253A" stroke="#2D3D60" stroke-width="1.5"/>
+  <rect x="340" y="598" width="18" height="30" rx="2"
+        fill="#202C3F" stroke="#374F6F" stroke-width="1.5"/>
+
+  <!-- S2 → S3 corridor -->
+  <rect x="592" y="468" width="18" height="28" rx="2"
+        fill="#202C3F" stroke="#374F6F" stroke-width="1.5"/>
+  <rect x="606" y="468" width="18" height="28" rx="2"
+        fill="#283040" stroke="#445570" stroke-width="1.5"/>
+
+  <!-- S3 → S4 corridor -->
+  <rect x="778" y="340" width="18" height="28" rx="2"
+        fill="#283040" stroke="#445570" stroke-width="1.5"/>
+  <rect x="793" y="340" width="15" height="28" rx="2"
+        fill="#2E2818" stroke="#6A5A30" stroke-width="1.5"/>
+
+  <!-- S4 → S5 opening (shaft opens to sky) -->
+  <rect x="870" y="140" width="40" height="18" rx="2"
+        fill="#E87020" fill-opacity="0.5" stroke="#F0A040" stroke-width="1"/>
+
+  <!-- ============================================================
+       PLAYER ROUTE ARROWS (gold, thick, showing direction of travel)
+       ============================================================ -->
+  <!-- S1 to S2 -->
+  <path d="M 340,635 C 290,600 335,545 335,500"
+        stroke="#C8A030" stroke-width="3" fill="none"
+        marker-end="url(#arrow-route)" stroke-linecap="round"/>
+
+  <!-- S2 to S3 -->
+  <path d="M 600,490 C 570,470 555,420 555,415"
+        stroke="#C8A030" stroke-width="3" fill="none"
+        marker-end="url(#arrow-route)" stroke-linecap="round"/>
+
+  <!-- S3 to S4 -->
+  <path d="M 790,370 C 810,360 790,330 790,300"
+        stroke="#C8A030" stroke-width="3" fill="none"
+        marker-end="url(#arrow-route)" stroke-linecap="round"/>
+
+  <!-- S4 to S5 -->
+  <path d="M 870,160 C 850,145 800,130 780,130"
+        stroke="#C8A030" stroke-width="3" fill="none"
+        marker-end="url(#arrow-route)" stroke-linecap="round"/>
+
+  <!-- Direction arrows within sections -->
+  <path d="M 152,748 L 232,730 L 285,712"
+        stroke="#C8A030" stroke-width="1.5" fill="none"
+        stroke-dasharray="5,3" marker-end="url(#arrow-route)"/>
+  <path d="M 370,578 L 445,559 L 520,542"
+        stroke="#C8A030" stroke-width="1.5" fill="none"
+        stroke-dasharray="5,3" marker-end="url(#arrow-route)"/>
+  <path d="M 585,436 L 672,425 L 723,421"
+        stroke="#C8A030" stroke-width="1.5" fill="none"
+        stroke-dasharray="5,3" marker-end="url(#arrow-route)"/>
+  <path d="M 820,315 L 884,295 L 820,272 L 884,250 L 852,230"
+        stroke="#C8A030" stroke-width="1.5" fill="none"
+        stroke-dasharray="5,3" marker-end="url(#arrow-route)"/>
+  <path d="M 485,118 L 573,107 L 664,97 L 720,100"
+        stroke="#C8A030" stroke-width="1.5" fill="none"
+        stroke-dasharray="5,3" marker-end="url(#arrow-route)"/>
+
+  <!-- ============================================================
+       START MARKER
+       ============================================================ -->
+  <circle cx="170" cy="740" r="12" fill="#22AA44" stroke="#44DD66" stroke-width="2"/>
+  <text x="170" y="744" text-anchor="middle" font-size="9" font-weight="bold" fill="white">S</text>
+  <text x="170" y="757" text-anchor="middle" font-size="8" fill="#44DD66">START</text>
+
+  <!-- ============================================================
+       LEGEND
+       ============================================================ -->
+  <rect x="20" y="840" width="1200" height="52" rx="4"
+        fill="#2A1A0A" fill-opacity="0.06" stroke="#8B6B3D" stroke-width="1"/>
+
+  <text x="35" y="858" font-size="9" font-weight="bold" fill="#5A3A1A">LEGEND:</text>
+
+  <!-- Platform -->
+  <rect x="100" y="849" width="28" height="8" rx="1" fill="#C4A265"/>
+  <text x="132" y="858" font-size="9" fill="#3A2A1A">Platform</text>
+
+  <!-- Moving platform -->
+  <rect x="200" y="849" width="28" height="8" rx="1" fill="#3A7A8A" stroke="#5AAABB" stroke-width="1"/>
+  <text x="232" y="858" font-size="9" fill="#3A2A1A">Moving platform</text>
+
+  <!-- Stair -->
+  <rect x="358" y="853" width="18" height="5" rx="1" fill="#A88B50"/>
+  <rect x="362" y="848" width="14" height="5" rx="1" fill="#A88B50"/>
+  <rect x="366" y="843" width="10" height="5" rx="1" fill="#A88B50"/>
+  <text x="382" y="858" font-size="9" fill="#3A2A1A">Staircase</text>
+
+  <!-- Ramp -->
+  <polygon points="450,857 478,857 478,843" fill="#B8963A" opacity="0.85"/>
+  <text x="485" y="858" font-size="9" fill="#3A2A1A">Ramp</text>
+
+  <!-- Obstacle -->
+  <circle cx="560" cy="852" r="7" fill="none" stroke="#BB4444" stroke-width="2"
+          stroke-dasharray="3,2"/>
+  <text x="572" y="858" font-size="9" fill="#3A2A1A">Obstacle</text>
+
+  <!-- Checkpoint -->
+  <polygon points="650,857 658,850 666,857 663,866 653,866"
+           fill="#28AA44" stroke="#60DD60" stroke-width="1"/>
+  <text x="672" y="858" font-size="9" fill="#3A2A1A">Checkpoint</text>
+
+  <!-- Start -->
+  <circle cx="760" cy="852" r="7" fill="#22AA44" stroke="#44DD66" stroke-width="1.5"/>
+  <text x="760" y="856" text-anchor="middle" font-size="7" font-weight="bold" fill="white">S</text>
+  <text x="772" y="858" font-size="9" fill="#3A2A1A">Start</text>
+
+  <!-- Finish -->
+  <circle cx="840" cy="852" r="7" fill="#C8A030" stroke="#FFD060" stroke-width="1.5"/>
+  <text x="840" y="856" text-anchor="middle" font-size="7" font-weight="bold" fill="#1A0A00">F</text>
+  <text x="852" y="858" font-size="9" fill="#3A2A1A">Finish / Goal</text>
+
+  <!-- Route arrow in legend -->
+  <defs>
+    <marker id="arrow-legend" markerWidth="8" markerHeight="6"
+            refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#C8A030"/>
+    </marker>
+  </defs>
+  <line x1="950" y1="852" x2="988" y2="852" stroke="#C8A030" stroke-width="2.5"
+        marker-end="url(#arrow-legend)"/>
+  <text x="996" y="858" font-size="9" fill="#3A2A1A">Player route</text>
+
+  <!-- Landmark column icon -->
+  <rect x="1090" y="843" width="8" height="16" rx="2" fill="#4A5A72"/>
+  <text x="1102" y="858" font-size="9" fill="#3A2A1A">Landmark</text>
+
+  <!-- Second legend row -->
+  <text x="35" y="882" font-size="9" font-weight="bold" fill="#5A3A1A">COLOURS:</text>
+  <rect x="100" y="872" width="16" height="12" rx="2" fill="#1A253A" stroke="#2D3D60" stroke-width="1"/>
+  <text x="120" y="882" font-size="9" fill="#3A2A1A">Dark interior (blue)</text>
+  <rect x="260" y="872" width="16" height="12" rx="2" fill="#2E2818" stroke="#6A5A30" stroke-width="1"/>
+  <text x="280" y="882" font-size="9" fill="#3A2A1A">Transition (warm dark)</text>
+  <rect x="430" y="872" width="16" height="12" rx="2" fill="#7A3A0A" stroke="#C87020" stroke-width="1"/>
+  <text x="450" y="882" font-size="9" fill="#3A2A1A">Exterior (warm orange)</text>
+  <rect x="600" y="872" width="16" height="12" rx="2" fill="#C4A265" stroke="#8B6B3D" stroke-width="1"/>
+  <text x="620" y="882" font-size="9" fill="#3A2A1A">Sandstone platforms</text>
+  <rect x="760" y="872" width="16" height="12" rx="2" fill="#C8A030" stroke="#FFD060" stroke-width="1"/>
+  <text x="780" y="882" font-size="9" fill="#3A2A1A">Gold accents / route</text>
+  <rect x="900" y="872" width="16" height="12" rx="2" fill="#3A7A8A" stroke="#5AAABB" stroke-width="1"/>
+  <text x="920" y="882" font-size="9" fill="#3A2A1A">Moving obstacle</text>
+  <rect x="1040" y="872" width="16" height="12" rx="2" fill="#28AA44" stroke="#60DD60" stroke-width="1"/>
+  <text x="1060" y="882" font-size="9" fill="#3A2A1A">Checkpoint / safe zone</text>
+
+</svg>

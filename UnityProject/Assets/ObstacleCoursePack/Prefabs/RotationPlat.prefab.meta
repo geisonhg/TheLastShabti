@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a70841853b0e99545a7dc761ea9def4d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Prefabs/RotationPlat.prefab
+  uploadId: 388513

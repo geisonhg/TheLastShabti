@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5d0ee86a322726f42853351f23363550
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Scripts/FallPlat.cs
+  uploadId: 388513

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1f9416082698e614ebb7003c2d80098b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Prefabs/WallMovable.prefab
+  uploadId: 388513

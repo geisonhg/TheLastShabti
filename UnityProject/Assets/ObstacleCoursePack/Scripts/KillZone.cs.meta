@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3d17b4303e125b24580f2dd3e79e1b99
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Scripts/KillZone.cs
+  uploadId: 388513

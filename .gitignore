@@ -1,0 +1,23 @@
+# Unity generated
+UnityProject/Library/
+UnityProject/Temp/
+UnityProject/obj/
+UnityProject/Logs/
+UnityProject/UserSettings/
+UnityProject/*.csproj
+UnityProject/*.sln
+UnityProject/My project/
+
+# Blender backups
+*.blend1
+*.blend2
+
+# Build output (share via Google Drive)
+Build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+Documentation/*.log

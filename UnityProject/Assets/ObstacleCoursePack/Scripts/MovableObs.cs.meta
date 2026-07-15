@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8c78eaffd4b5a704daa689d5bc3e3e09
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178169
+  packageName: Obstacle Course Pack
+  packageVersion: 1.1
+  assetPath: Assets/ObstacleCoursePack/Scripts/MovableObs.cs
+  uploadId: 388513
