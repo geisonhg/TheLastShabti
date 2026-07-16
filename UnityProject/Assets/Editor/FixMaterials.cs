@@ -4,13 +4,6 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-/// <summary>
-/// Fixes two visual bugs:
-/// 1. OCP materials use Standard shader → magenta in URP. Upgrades them to URP Lit.
-/// 2. Ambient light is nearly-black dark-blue, making the level appear dark purple.
-///    Raises it to a warm dim value so geometry is visible.
-/// Run via  TheLastShabti > Fix Materials & Lighting
-/// </summary>
 public static class FixMaterials
 {
     [MenuItem("TheLastShabti/Fix Materials & Lighting")]
@@ -183,9 +176,6 @@ public static class FixMaterials
         Debug.Log("[FixMaterials] MAT_Player assigned to OCP player capsule.");
     }
 
-    // Places CHAR_Nebu.fbx as a decorative shabtī statue near the Sun Altar (end of level).
-    // This satisfies the "integrate your own Blender assets" requirement for Part 2
-    // without interfering with the player camera.
     static void PlaceNebuStatue()
     {
         GameObject nebuFBX = AssetDatabase.LoadAssetAtPath<GameObject>(
@@ -206,8 +196,7 @@ public static class FixMaterials
         statue.transform.position = new Vector3(70f, 24.0f, 2.5f);
         statue.transform.rotation = Quaternion.Euler(0f, -30f, 0f);
 
-        // FBX import scale: Blender exports in cm by default; Unity reads it as 0.01.
-        // Multiply to get a statue about 1.65 m tall.
+        // escala ajustada para que quede aprox 1.65m de alto
         statue.transform.localScale = Vector3.one * 0.018f;
 
         // Add a collider so the player can walk around it

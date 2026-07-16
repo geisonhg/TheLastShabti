@@ -1,9 +1,5 @@
 using UnityEngine;
 
-// Moves the platform back and forth between two positions.
-// Attach to any platform object. Set moveAxis, moveDistance and speed in Inspector.
-// Does NOT use Obstacle Course Pack — this is a simple placeholder script.
-// Replace with the OCP moving platform prefab if the pack is imported.
 public class MovingPlatform : MonoBehaviour
 {
     public enum Axis { X, Y, Z }
