@@ -214,22 +214,22 @@ Blend file saved with all objects, materials, cameras and render settings intact
 
 **Blender render — Nebu front view**
 
-`Documentation/Screenshots/nebu_front_hq.png`
+`Documentation/Screenshots/Screenshot 2026-07-15 213604.png`
 *Nebu character from front. Shows Nemes headdress, scarab on chest, turquoise collar, kohl eye lines.*
 
 **Blender render — Nebu three-quarter view**
 
-`Documentation/Screenshots/nebu_34_hq.png`
+`Documentation/Screenshots/Screenshot 2026-07-15 213706.png`
 *Nebu from a three-quarter angle showing the back headdress cloth and side profile.*
 
 **Blender render — Environment assets overview**
 
-`Documentation/Screenshots/assets_overview_hq.png`
+`Documentation/Screenshots/Screenshot 2026-07-16 125808.png`
 *All 10 environment and prop assets arranged in a single Blender scene for review.*
 
 **Blender render — Level scene**
 
-`Documentation/Screenshots/level_scene_hq.png`
+`Documentation/Screenshots/Screenshot 2026-07-16 125919.png`
 *Composed level preview showing the staircase, gap platforms, archway and Nebu placed at the start.*
 
 **2D Level Map**
