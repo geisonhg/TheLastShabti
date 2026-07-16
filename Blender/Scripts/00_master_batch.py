@@ -1,18 +1,6 @@
-"""
-00_master_batch.py
-Master batch script for The Last Shabti.
-Run from command line:
-  blender.exe --background --python 00_master_batch.py
-
-This script:
-  1. Clears the default scene
-  2. Creates all shared materials
-  3. Creates Nebu character
-  4. Creates all 10 environment assets
-  5. Saves TheLastShabti.blend
-  6. Exports every asset as a separate FBX
-  7. Renders preview images
-"""
+# 00_master_batch.py - script batch para The Last Shabti
+# Usar desde línea de comandos:
+#   blender.exe --background --python 00_master_batch.py
 
 import bpy
 import bmesh
@@ -20,12 +8,9 @@ import math
 import os
 import sys
 
-# ---------------------------------------------------------------------------
-# Path setup  (all relative to this script's location)
-# ---------------------------------------------------------------------------
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
-BLENDER_DIR = os.path.dirname(SCRIPT_DIR)                          # .../Blender/
-PROJECT_DIR = os.path.dirname(BLENDER_DIR)                         # .../TheLastShabti/
+BLENDER_DIR = os.path.dirname(SCRIPT_DIR)
+PROJECT_DIR = os.path.dirname(BLENDER_DIR)
 EXPORTS_DIR = os.path.join(BLENDER_DIR, "Exports")
 SCREENSHOTS_DIR = os.path.join(PROJECT_DIR, "Documentation", "Screenshots")
 BLEND_PATH  = os.path.join(BLENDER_DIR, "TheLastShabti.blend")
@@ -34,22 +19,18 @@ os.makedirs(EXPORTS_DIR, exist_ok=True)
 os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
 
 print(f"\n=== The Last Shabti — Blender Batch ===")
-print(f"Project : {PROJECT_DIR}")
-print(f"Exports : {EXPORTS_DIR}")
-print(f"Renders : {SCREENSHOTS_DIR}")
+print(f"Proyecto : {PROJECT_DIR}")
+print(f"Exports  : {EXPORTS_DIR}")
+print(f"Renders  : {SCREENSHOTS_DIR}")
 print("")
 
-# ---------------------------------------------------------------------------
-# Clear default scene
-# ---------------------------------------------------------------------------
+# limpiar escena por defecto
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete()
 for col in bpy.data.collections:
     bpy.data.collections.remove(col)
 
-# ---------------------------------------------------------------------------
-# Helper functions
-# ---------------------------------------------------------------------------
+
 def make_mat(name, rgb, roughness=0.85, metallic=0.0, emission=None):
     if name in bpy.data.materials:
         return bpy.data.materials[name]
@@ -99,11 +80,9 @@ def set_collection(obj, col_name):
     if obj.name not in col.objects:
         col.objects.link(obj)
     for c in bpy.context.scene.collection.objects:
-        pass  # keep in scene root too
+        pass
 
-# ---------------------------------------------------------------------------
-# Materials
-# ---------------------------------------------------------------------------
+
 M_STONE  = make_mat("MAT_StoneBlue",   (0.44, 0.54, 0.62), roughness=0.90)
 M_SAND   = make_mat("MAT_Sandstone",   (0.76, 0.62, 0.39), roughness=0.85)
 M_GOLD   = make_mat("MAT_GoldAccent",  (0.78, 0.65, 0.18), roughness=0.25, metallic=0.75)
@@ -114,19 +93,14 @@ M_FIRE   = make_mat("MAT_TorchFire",   (0.90, 0.55, 0.08), roughness=0.20,
                     emission=(0.90, 0.55, 0.08))
 M_CLAY   = make_mat("MAT_Clay",        (0.55, 0.38, 0.28), roughness=0.92)
 
-print("Materials created.")
+print("Materiales creados.")
 
-# ===========================================================================
-# CH_NEBU
-# ===========================================================================
-print("\n--- Creating CH_Nebu ---")
+print("\n--- Creando CH_Nebu ---")
 
-# Body
-body = add_box("CH_Nebu_Body", (0, 0, 0.38), (0.46, 0.36, 0.50), M_STONE)
-belt = add_box("CH_Nebu_Belt", (0, 0, 0.34), (0.49, 0.39, 0.07), M_TURQ)
+body   = add_box("CH_Nebu_Body",   (0, 0, 0.38), (0.46, 0.36, 0.50), M_STONE)
+belt   = add_box("CH_Nebu_Belt",   (0, 0, 0.34), (0.49, 0.39, 0.07), M_TURQ)
 collar = add_box("CH_Nebu_Collar", (0, 0, 0.72), (0.50, 0.40, 0.07), M_TURQ)
 
-# Head (slightly oversized)
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0, 0, 1.02))
 head = bpy.context.active_object
@@ -140,7 +114,6 @@ bpy.ops.mesh.bevel(offset=0.04, segments=1, affect='EDGES')
 bpy.ops.object.mode_set(mode='OBJECT')
 head.data.materials.append(M_STONE)
 
-# Nemes headdress
 nemes_back = add_box("CH_Nebu_NemesBack", (0, -0.09, 1.18), (0.60, 0.08, 0.66), M_SAND)
 nemes_l    = add_box("CH_Nebu_NemesLapL", (-0.36, 0.06, 0.84), (0.10, 0.10, 0.30), M_SAND,
                      rot=(0, 0.12, 0))
@@ -149,13 +122,11 @@ nemes_r    = add_box("CH_Nebu_NemesLapR", ( 0.36, 0.06, 0.84), (0.10, 0.10, 0.30
 crown      = add_box("CH_Nebu_CrownBand", (0, 0.26, 1.24), (0.58, 0.04, 0.07), M_DARK)
 uraeus     = add_box("CH_Nebu_Uraeus", (0, 0.28, 1.35), (0.04, 0.04, 0.10), M_GOLD)
 
-# Eyes and kohl
 eye_l  = add_box("CH_Nebu_EyeL",  (-0.15, 0.27, 1.02), (0.10, 0.03, 0.055), M_EYE)
 eye_r  = add_box("CH_Nebu_EyeR",  ( 0.15, 0.27, 1.02), (0.10, 0.03, 0.055), M_EYE)
 kohl_l = add_box("CH_Nebu_KohlL", (-0.24, 0.27, 1.02), (0.07, 0.025, 0.025), M_EYE)
 kohl_r = add_box("CH_Nebu_KohlR", ( 0.24, 0.27, 1.02), (0.07, 0.025, 0.025), M_EYE)
 
-# Scarab chest piece
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0, 0.37, 0.56))
 scarab = bpy.context.active_object
@@ -174,7 +145,6 @@ wing_l = add_box("CH_Nebu_WingL", (-0.17, 0.37, 0.55), (0.09, 0.025, 0.055), M_G
 wing_r = add_box("CH_Nebu_WingR", ( 0.17, 0.37, 0.55), (0.09, 0.025, 0.055), M_GOLD,
                  rot=(0, 0, -0.25))
 
-# Arms and legs
 arm_l = add_box("CH_Nebu_ArmL", (-0.52, 0, 0.50), (0.13, 0.14, 0.34), M_STONE,
                 rot=(0,  0.18, 0))
 arm_r = add_box("CH_Nebu_ArmR", ( 0.52, 0, 0.50), (0.13, 0.14, 0.34), M_STONE,
@@ -182,7 +152,6 @@ arm_r = add_box("CH_Nebu_ArmR", ( 0.52, 0, 0.50), (0.13, 0.14, 0.34), M_STONE,
 leg_l = add_box("CH_Nebu_LegL", (-0.16, 0.01, 0.11), (0.15, 0.18, 0.26), M_STONE)
 leg_r = add_box("CH_Nebu_LegR", ( 0.16, 0.01, 0.11), (0.15, 0.18, 0.26), M_STONE)
 
-# Root empty - parent for all parts
 deselect()
 bpy.ops.object.empty_add(type='PLAIN_AXES', location=(0, 0, 0))
 nebu_root = bpy.context.active_object
@@ -194,12 +163,9 @@ nebu_parts = [body, belt, collar, head, nemes_back, nemes_l, nemes_r, crown, ura
 for p in nebu_parts:
     p.parent = nebu_root
 
-print(f"  CH_Nebu: {len(nebu_parts)} parts created.")
+print(f"  CH_Nebu: {len(nebu_parts)} partes.")
 
-# ===========================================================================
-# ENV_SandstonePlatform
-# ===========================================================================
-print("\n--- Creating ENV_SandstonePlatform ---")
+print("\n--- Creando ENV_SandstonePlatform ---")
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(0, -4, 0))
 plat = bpy.context.active_object
@@ -216,10 +182,7 @@ plat.data.materials.append(M_SAND)
 edge = add_box("ENV_SandstonePlatform_Edge", (0, -3.49, 0), (2.05, 0.02, 0.42), M_DARK)
 edge.parent = plat
 
-# ===========================================================================
-# PROP_BrokenColumn
-# ===========================================================================
-print("--- Creating PROP_BrokenColumn ---")
+print("--- Creando PROP_BrokenColumn ---")
 deselect()
 bpy.ops.mesh.primitive_cylinder_add(vertices=8, radius=0.28, depth=1.6,
                                      location=(4, -4, 0))
@@ -245,10 +208,7 @@ bpy.ops.object.mode_set(mode='OBJECT')
 base_ring = add_box("PROP_BrokenColumn_Base", (4, -4, -0.76), (0.70, 0.70, 0.12), M_SAND)
 base_ring.parent = col_obj
 
-# ===========================================================================
-# PROP_Obelisk
-# ===========================================================================
-print("--- Creating PROP_Obelisk ---")
+print("--- Creando PROP_Obelisk ---")
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(8, -4, 0))
 ob = bpy.context.active_object
@@ -281,10 +241,7 @@ ob_cap.parent = ob
 ob_engrave = add_box("PROP_Obelisk_Engrave", (8, -3.79, 1.0), (0.28, 0.01, 1.6), M_DARK)
 ob_engrave.parent = ob
 
-# ===========================================================================
-# PROP_BurialJar
-# ===========================================================================
-print("--- Creating PROP_BurialJar ---")
+print("--- Creando PROP_BurialJar ---")
 deselect()
 bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=0.22, depth=0.9,
                                      end_fill_type='NGON', location=(0, -8, 0))
@@ -322,10 +279,7 @@ jar_lid.parent = jar
 jar_stripe = add_box("PROP_BurialJar_Stripe", (0, -8, 0.05), (0.48, 0.48, 0.06), M_TURQ)
 jar_stripe.parent = jar
 
-# ===========================================================================
-# PROP_WallTorch
-# ===========================================================================
-print("--- Creating PROP_WallTorch ---")
+print("--- Creando PROP_WallTorch ---")
 deselect()
 wall_plate = add_box("PROP_WallTorch", (4, -8, 0), (0.20, 0.06, 0.26), M_STONE)
 
@@ -350,10 +304,7 @@ flame.data.name = "PROP_WallTorch_Flame_Mesh"
 flame.data.materials.append(M_FIRE)
 flame.parent = wall_plate
 
-# ===========================================================================
-# PROP_ScarabWall
-# ===========================================================================
-print("--- Creating PROP_ScarabWall ---")
+print("--- Creando PROP_ScarabWall ---")
 deselect()
 panel = add_box("PROP_ScarabWall", (8, -8, 0), (0.72, 0.07, 0.82), M_SAND)
 
@@ -388,10 +339,7 @@ for i, (sx, sz) in enumerate([(-0.24,-0.10),(-0.22,0.0),(-0.20,0.10),
                   rot=(0, 0, math.pi/2 + side_sign*0.3))
     leg.parent = panel
 
-# ===========================================================================
-# PROP_SunAltar
-# ===========================================================================
-print("--- Creating PROP_SunAltar ---")
+print("--- Creando PROP_SunAltar ---")
 deselect()
 tier1 = add_box("PROP_SunAltar", (0, -12, 0.15), (2.2, 2.2, 0.30), M_SAND)
 
@@ -420,10 +368,7 @@ for dx, dy in [(-0.90,-0.90),(0.90,-0.90),(-0.90,0.90),(0.90,0.90)]:
     post = add_box("PROP_SunAltar_Post", (0+dx, -12+dy, 0.55), (0.12, 0.12, 0.60), M_SAND)
     post.parent = tier1
 
-# ===========================================================================
-# ENV_Stair
-# ===========================================================================
-print("--- Creating ENV_Stair ---")
+print("--- Creando ENV_Stair ---")
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(4, -12, 0))
 step = bpy.context.active_object
@@ -437,10 +382,7 @@ bpy.ops.mesh.bevel(offset=0.02, segments=1, affect='EDGES')
 bpy.ops.object.mode_set(mode='OBJECT')
 step.data.materials.append(M_SAND)
 
-# ===========================================================================
-# ENV_Ramp
-# ===========================================================================
-print("--- Creating ENV_Ramp ---")
+print("--- Creando ENV_Ramp ---")
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(8, -12, 0))
 ramp = bpy.context.active_object
@@ -454,14 +396,11 @@ bm.verts.ensure_lookup_table()
 for v in bm.verts:
     if v.co.y < -0.60 and v.co.z > 0.20:
         v.co.z = -0.275
-bmesh.update_edit_mesh(ramp.data)
+bmesh.update_edit_mesh(bm)
 bpy.ops.object.mode_set(mode='OBJECT')
 ramp.data.materials.append(M_SAND)
 
-# ===========================================================================
-# ENV_Archway
-# ===========================================================================
-print("--- Creating ENV_Archway ---")
+print("--- Creando ENV_Archway ---")
 deselect()
 AX, AY = 0, -16
 
@@ -484,12 +423,10 @@ for side, cname in [(-1,"ENV_Archway_TopL"),(1,"ENV_Archway_TopR")]:
     top = add_box(cname, (AX+side*0.58, AY, 2.33), (0.46, 0.46, 0.10), M_SAND)
     top.parent = pillar_l
 
-print("\nAll assets created.")
+print("\nTodos los assets creados.")
 
-# ===========================================================================
-# RENDER SETUP  — render preview images
-# ===========================================================================
-print("\n--- Setting up render ---")
+# render setup
+print("\n--- Configurando render ---")
 
 scene = bpy.context.scene
 scene.render.engine = 'BLENDER_EEVEE_NEXT'
@@ -497,9 +434,7 @@ scene.render.resolution_x = 960
 scene.render.resolution_y = 720
 scene.render.film_transparent = True
 scene.eevee.taa_render_samples = 32
-# use_soft_shadows removed in Eevee Next (Blender 4.2+)
 
-# World background
 world = bpy.data.worlds.new("World")
 bpy.context.scene.world = world
 world.use_nodes = True
@@ -536,48 +471,40 @@ def add_cam(name, loc, rot_deg):
     cam.rotation_euler = tuple(math.radians(d) for d in rot_deg)
     return cam
 
-# Key + Fill + Rim lights for character render
 sun_key  = add_sun("Light_Key",  (2, -3, 4),  energy=4.0, color=(1.0, 0.95, 0.85))
 sun_fill = add_sun("Light_Fill", (-2, -2, 3), energy=1.5, color=(0.6, 0.7, 0.9))
 sun_rim  = add_sun("Light_Rim",  (0, 3, 5),   energy=2.0, color=(1.0, 0.8, 0.4))
 
-# --- RENDER 1: Nebu front ---
 cam1 = add_cam("Camera_NebuFront", (0, -2.5, 0.7), (88, 0, 0))
 scene.camera = cam1
 scene.render.filepath = os.path.join(SCREENSHOTS_DIR, "nebu_character_front")
 scene.render.image_settings.file_format = 'PNG'
 
-# Hide all non-Nebu objects temporarily
 all_objects = list(bpy.context.scene.objects)
 for obj in all_objects:
     if obj.type in ('MESH', 'EMPTY') and not obj.name.startswith("CH_Nebu") and not obj.name.startswith("Light") and obj.type != 'CAMERA':
         obj.hide_render = True
 
 bpy.ops.render.render(write_still=True)
-print(f"  Rendered: nebu_character_front.png")
+print(f"  Render: nebu_character_front.png")
 
-# --- RENDER 2: Nebu 3/4 view ---
 cam2 = add_cam("Camera_Nebu34", (1.5, -2.2, 1.1), (78, 0, 32))
 scene.camera = cam2
 scene.render.filepath = os.path.join(SCREENSHOTS_DIR, "nebu_character_34view")
 bpy.ops.render.render(write_still=True)
-print(f"  Rendered: nebu_character_34view.png")
+print(f"  Render: nebu_character_34view.png")
 
-# Unhide all objects
 for obj in all_objects:
     obj.hide_render = False
 
-# --- RENDER 3: Asset collection overview ---
 cam3 = add_cam("Camera_Assets", (4, -18, 8), (58, 0, 0))
 scene.camera = cam3
 scene.render.filepath = os.path.join(SCREENSHOTS_DIR, "blender_assets_overview")
 bpy.ops.render.render(write_still=True)
-print(f"  Rendered: blender_assets_overview.png")
+print(f"  Render: blender_assets_overview.png")
 
-# ===========================================================================
-# FBX EXPORT
-# ===========================================================================
-print("\n--- Exporting FBX files ---")
+# exportar FBX
+print("\n--- Exportando FBX ---")
 
 FBX_SETTINGS = dict(
     use_selection=True,
@@ -602,7 +529,7 @@ FBX_SETTINGS = dict(
 def export_root(root_name, filename=None):
     fname = filename or root_name
     if root_name not in bpy.data.objects:
-        print(f"  SKIP (not found): {root_name}")
+        print(f"  SKIP: {root_name}")
         return False
     root_obj = bpy.data.objects[root_name]
     deselect()
@@ -629,24 +556,15 @@ results["PROP_WallTorch"]        = export_root("PROP_WallTorch")
 results["PROP_ScarabWall"]       = export_root("PROP_ScarabWall")
 results["PROP_SunAltar"]         = export_root("PROP_SunAltar")
 
-# ===========================================================================
-# SAVE BLEND FILE
-# ===========================================================================
-print(f"\n--- Saving blend file ---")
+print(f"\n--- Guardando blend ---")
 bpy.ops.wm.save_as_mainfile(filepath=BLEND_PATH)
-print(f"  Saved: {BLEND_PATH}")
+print(f"  Guardado: {BLEND_PATH}")
 
-# ===========================================================================
-# SUMMARY
-# ===========================================================================
-print("\n=== BATCH COMPLETE ===")
+print("\n=== BATCH COMPLETO ===")
 ok  = [k for k, v in results.items() if v]
 bad = [k for k, v in results.items() if not v]
-print(f"FBX exported OK : {len(ok)}")
+print(f"FBX exportados: {len(ok)}")
 if bad:
-    print(f"FBX FAILED      : {bad}")
-print(f"Blend file      : {BLEND_PATH}")
-print(f"Exports folder  : {EXPORTS_DIR}")
-print(f"Screenshots     : {SCREENSHOTS_DIR}")
+    print(f"FBX fallidos  : {bad}")
 if bad:
     sys.exit(1)

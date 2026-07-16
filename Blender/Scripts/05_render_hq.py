@@ -1,29 +1,14 @@
-"""
-05_render_hq.py  —  The Last Shabti
-Configura la escena para renders de alta calidad.
-NO llama render automáticamente para evitar crashes.
-
-MODO DE USO:
-  1. Cambia SHOT abajo al número de render que quieres (1, 2, 3 o 4)
-  2. Run Script
-  3. Presiona F12 para renderizar
-  4. Ctrl+S en la ventana de render para guardar (o se guarda solo si OUTPUT_PATH es válido)
-  5. Repite cambiando SHOT
-
-SHOTS:
-  1 = Nebu frontal
-  2 = Nebu 3/4 view
-  3 = Assets overview (grid de todos los assets)
-  4 = Level scene compuesta (requiere haber corrido 04_compose_level.py primero)
-"""
+# 05_render_hq.py - configura la escena para renders de alta calidad
+# NO renderiza solo, hay que presionar F12 después
+# Cambiar SHOT (1-4) y correr el script
 
 import bpy
 import math
 import os
 
-# ── CAMBIA ESTE NÚMERO (1, 2, 3 o 4) ────────────────────────────────────────
+# ── cambiar este número ──────────────────────────────────────────────────────
 SHOT = 1
-# ─────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────────────────────
 
 SCRIPT_DIR      = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR     = os.path.dirname(os.path.dirname(SCRIPT_DIR))
@@ -39,7 +24,6 @@ SHOT_NAMES = {
 
 scene = bpy.context.scene
 
-# ── Render engine: Eevee (funciona en modo interactivo con GPU) ───────────────
 scene.render.engine       = 'BLENDER_EEVEE_NEXT'
 scene.eevee.taa_render_samples = 64
 scene.render.resolution_x = 1280
@@ -94,7 +78,6 @@ def hide_all_except(prefixes):
         obj.hide_render = not any(obj.name.startswith(p) for p in keep)
 
 
-# World background
 world = bpy.data.worlds.get("World") or bpy.data.worlds.new("World")
 scene.world = world
 world.use_nodes = True
@@ -103,13 +86,11 @@ if bg:
     bg.inputs["Color"].default_value    = (0.06, 0.05, 0.08, 1.0)
     bg.inputs["Strength"].default_value = 0.3
 
-# ── Remove previous RND_ objects ──────────────────────────────────────────────
 clear_rnd_objects()
 show_all()
 
-# =============================================================================
 if SHOT == 1:
-    # Nebu frontal — muestra cuerpo y collar turquesa
+    # Nebu de frente
     print("Shot 1: Nebu frontal")
     hide_all_except(["CH_Nebu"])
     add_light('SUN',  "RND_Key",  (2,-3,5),   energy=4.5, color=(1.0,0.92,0.78),
@@ -121,7 +102,7 @@ if SHOT == 1:
     set_camera(loc=(0,-2.6,0.72), rot_deg=(90,0,0), lens=60)
 
 elif SHOT == 2:
-    # Nebu 3/4 — muestra tocado Nemes y escarabajo dorado
+    # Nebu en 3/4 - se ve el tocado Nemes y el escarabajo
     print("Shot 2: Nebu 3/4")
     hide_all_except(["CH_Nebu"])
     add_light('SUN',  "RND_Key",  (2,-3,5),   energy=4.5, color=(1.0,0.92,0.78),
@@ -133,7 +114,7 @@ elif SHOT == 2:
     set_camera(loc=(1.6,-2.0,1.0), rot_deg=(76,0,34), lens=55)
 
 elif SHOT == 3:
-    # Assets overview — todos los assets en grid
+    # todos los assets en grid
     print("Shot 3: Assets overview")
     asset_prefixes = [
         "CH_Nebu", "ENV_SandstonePlatform", "ENV_Stair", "ENV_Ramp", "ENV_Archway",
@@ -145,18 +126,16 @@ elif SHOT == 3:
               rot_deg=(35,0,-20))
     add_light('AREA', "RND_Fill",   (0, 5, 5),  energy=80,  color=(0.70,0.80,1.0),
               size=8, rot_deg=(60,180,0))
-    # Wide shot covering the asset grid (assets spread at x=0..8, y=0..-16)
     set_camera(loc=(4,-22,12), rot_deg=(55,0,0), lens=35)
 
 elif SHOT == 4:
-    # Level scene (requiere haber corrido 04_compose_level.py)
+    # escena del nivel (requiere haber corrido 04_compose_level.py)
     print("Shot 4: Level scene")
     lp_objects = [o for o in scene.objects if o.name.startswith("LP_")]
     if not lp_objects:
-        print("ERROR: No LP_ objects found. Run 04_compose_level.py first!")
+        print("ERROR: no hay objetos LP_. Correr 04_compose_level.py primero.")
     else:
         hide_all_except(["LP_"])
-        # Restore LP_ lights
         for obj in scene.objects:
             if obj.name.startswith("LP_") and obj.type == 'LIGHT':
                 obj.hide_render = False
@@ -166,6 +145,6 @@ elif SHOT == 4:
         else:
             set_camera(loc=(0,-9.5,4.8), rot_deg=(68,0,0), lens=35)
 
-print(f"\nListo para renderizar: SHOT {SHOT} — {SHOT_NAMES[SHOT]}")
-print(f"Guardado en: {scene.render.filepath}.png")
-print("Presiona F12 para renderizar.")
+print(f"\nListo: SHOT {SHOT} — {SHOT_NAMES[SHOT]}")
+print(f"Ruta: {scene.render.filepath}.png")
+print("Presionar F12 para renderizar.")

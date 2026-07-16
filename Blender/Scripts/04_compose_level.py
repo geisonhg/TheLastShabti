@@ -1,16 +1,6 @@
-"""
-04_compose_level.py  —  The Last Shabti
-Builds a composed level-preview scene in Blender using all the game assets.
-Shows the level layout as it exists in Unity: staircase, platforms,
-archways, props, lighting atmosphere.
-
-HOW TO USE:
-  1. Open TheLastShabti.blend  (run 00_master_batch.py first if not done)
-  2. Go to Scripting tab, open this file, Run Script
-  3. A new collection "LevelPreview" appears with the full scene
-  4. Switch viewport to Rendered view to see colours
-  5. Run 05_render_hq.py to save high-quality PNGs
-"""
+# 04_compose_level.py - arma la escena de preview del nivel en Blender
+# Requiere haber corrido 00_master_batch.py primero
+# El resultado queda en la colección "LevelPreview"
 
 import bpy
 import math
@@ -57,9 +47,6 @@ def box(name, loc, scale, mat, rot=(0, 0, 0), col=None):
     return obj
 
 
-# ---------------------------------------------------------------------------
-# Materials
-# ---------------------------------------------------------------------------
 M_SAND  = make_mat("MAT_Sandstone",  (0.76, 0.62, 0.39), roughness=0.88)
 M_DARK  = make_mat("MAT_DarkBrown",  (0.15, 0.08, 0.04), roughness=0.92)
 M_TURQ  = make_mat("MAT_Turquoise",  (0.28, 0.55, 0.52), roughness=0.70)
@@ -71,34 +58,23 @@ M_CLAY  = make_mat("MAT_Clay",       (0.55, 0.38, 0.28), roughness=0.92)
 
 COL = "LevelPreview"
 
-# ---------------------------------------------------------------------------
-# Ground floor
-# ---------------------------------------------------------------------------
-box("LP_Floor", (0, 0, -0.15), (14, 5, 0.30), M_SAND, col=COL)
+box("LP_Floor",   (0, 0, -0.15),  (14, 5, 0.30), M_SAND, col=COL)
+box("LP_BackWall",(0, 2.6, 1.5),  (14, 0.2, 3.0), M_STONE, col=COL)
 
-# Back wall
-box("LP_BackWall", (0, 2.6, 1.5), (14, 0.2, 3.0), M_STONE, col=COL)
-
-# ---------------------------------------------------------------------------
-# Staircase  (S1 — 5 steps going right and up)
-# ---------------------------------------------------------------------------
+# escalera de 5 peldaños hacia la derecha
 for i in range(5):
     box(f"LP_Step{i}",
         (-5.5 + i * 0.8, 0, 0.11 + i * 0.22),
         (0.8, 4.8, 0.22 + i * 0.22),
         M_SAND, col=COL)
 
-# Landing platform at top of stairs
 box("LP_Landing", (-1.5, 0, 1.25), (2.4, 4.8, 0.22), M_SAND, col=COL)
 
-# ---------------------------------------------------------------------------
-# Three gap platforms (S2 style)
-# ---------------------------------------------------------------------------
 box("LP_Plat1", (0.8, 0, 1.58), (1.6, 3.0, 0.20), M_SAND, col=COL)
 box("LP_Plat2", (2.4, 0, 1.80), (1.2, 3.0, 0.20), M_SAND, col=COL)
 box("LP_Plat3", (3.8, 0, 2.05), (1.4, 3.0, 0.20), M_SAND, col=COL)
 
-# Ramp connecting to higher section
+# rampa hacia la sección más alta
 deselect()
 bpy.ops.mesh.primitive_cube_add(size=1.0, location=(5.0, 0, 1.55))
 ramp = bpy.context.active_object
@@ -120,17 +96,13 @@ if COL not in bpy.data.collections:
     bpy.context.scene.collection.children.link(c)
 bpy.data.collections[COL].objects.link(ramp)
 
-# ---------------------------------------------------------------------------
-# Archway  (S1→S2 transition, centre of scene)
-# ---------------------------------------------------------------------------
+# arco de transición S1→S2
 box("LP_ArchPillarL", (-0.4, 2.4, 1.55), (0.28, 0.28, 1.90), M_STONE, col=COL)
 box("LP_ArchPillarR", ( 0.4, 2.4, 1.55), (0.28, 0.28, 1.90), M_STONE, col=COL)
 box("LP_ArchLintel",  ( 0.0, 2.4, 2.56), (1.10, 0.32, 0.24), M_SAND,  col=COL)
 box("LP_ArchGroove",  ( 0.0, 2.32, 2.56),(0.80, 0.02, 0.10), M_DARK,  col=COL)
 
-# ---------------------------------------------------------------------------
-# Obelisks  (pair flanking the back)
-# ---------------------------------------------------------------------------
+# obeliscos en el fondo
 for sx in (-5.5, 5.5):
     deselect()
     bpy.ops.mesh.primitive_cube_add(size=1.0, location=(sx, 2.0, 1.70))
@@ -160,9 +132,7 @@ for sx in (-5.5, 5.5):
     cap.data.materials.append(M_GOLD)
     bpy.data.collections[COL].objects.link(cap)
 
-# ---------------------------------------------------------------------------
-# Burial jars (cluster near start)
-# ---------------------------------------------------------------------------
+# jarras cerca del inicio
 for i, (jx, jy) in enumerate([(-5.8, 1.8), (-5.2, 2.0), (-4.9, 1.5)]):
     deselect()
     bpy.ops.mesh.primitive_cylinder_add(vertices=10, radius=0.15, depth=0.60,
@@ -194,9 +164,7 @@ for i, (jx, jy) in enumerate([(-5.8, 1.8), (-5.2, 2.0), (-4.9, 1.5)]):
     lid.data.materials.append(M_CLAY)
     bpy.data.collections[COL].objects.link(lid)
 
-# ---------------------------------------------------------------------------
-# Wall torches (on back wall, two positions)
-# ---------------------------------------------------------------------------
+# antorchas en la pared
 for tx in (-3.0, 3.0):
     box(f"LP_TorchPlate_{tx}", (tx, 2.52, 1.60), (0.14, 0.06, 0.18), M_STONE, col=COL)
     box(f"LP_TorchBracket_{tx}", (tx+0.18, 2.45, 1.64), (0.30, 0.06, 0.05), M_DARK, col=COL)
@@ -208,9 +176,7 @@ for tx in (-3.0, 3.0):
     fl.data.materials.append(M_FIRE)
     bpy.data.collections[COL].objects.link(fl)
 
-# ---------------------------------------------------------------------------
-# Sun altar (right end of scene — the goal)
-# ---------------------------------------------------------------------------
+# altar solar al final (la meta)
 box("LP_AltarBase",  (6.0, 0, 2.30), (1.6, 1.6, 0.22), M_SAND, col=COL)
 box("LP_AltarTier2", (6.0, 0, 2.52), (1.1, 1.1, 0.18), M_SAND, col=COL)
 box("LP_AltarTier3", (6.0, 0, 2.70), (0.68, 0.68, 0.14), M_STONE, col=COL)
@@ -229,18 +195,13 @@ for i in range(8):
         (0.06, 0.16, 0.03), M_GOLD,
         rot=(0, 0, angle + math.pi/2), col=COL)
 
-# ---------------------------------------------------------------------------
-# Player character (Nebu) — small figure at start of staircase
-# ---------------------------------------------------------------------------
-box("LP_Nebu_Body",   (-5.5, 0, 0.62), (0.24, 0.19, 0.26), M_STONE, col=COL)
-box("LP_Nebu_Belt",   (-5.5, 0, 0.60), (0.26, 0.20, 0.04), M_TURQ,  col=COL)
-box("LP_Nebu_Head",   (-5.5, 0, 0.98), (0.28, 0.25, 0.27), M_STONE, col=COL)
-box("LP_Nebu_Nemes",  (-5.5,-0.04,1.09),(0.30, 0.04, 0.33), M_SAND, col=COL)
+# mini Nebu al inicio de la escalera
+box("LP_Nebu_Body",  (-5.5, 0, 0.62),     (0.24, 0.19, 0.26), M_STONE, col=COL)
+box("LP_Nebu_Belt",  (-5.5, 0, 0.60),     (0.26, 0.20, 0.04), M_TURQ,  col=COL)
+box("LP_Nebu_Head",  (-5.5, 0, 0.98),     (0.28, 0.25, 0.27), M_STONE, col=COL)
+box("LP_Nebu_Nemes", (-5.5,-0.04,1.09),   (0.30, 0.04, 0.33), M_SAND,  col=COL)
 
-# ---------------------------------------------------------------------------
-# Lighting  (Egyptian atmosphere)
-# ---------------------------------------------------------------------------
-# Remove existing lights
+# iluminación — borrar luces existentes y poner las propias
 for obj in list(bpy.context.scene.objects):
     if obj.type == 'LIGHT':
         bpy.data.objects.remove(obj, do_unlink=True)
@@ -262,7 +223,7 @@ fill.data.energy = 60
 fill.data.size = 5
 fill.data.color = (0.55, 0.65, 0.90)
 
-# Point lights for torch glow
+# luz puntual para el brillo de cada antorcha
 for tx in (-3.0, 3.0):
     deselect()
     bpy.ops.object.light_add(type='POINT', location=(tx + 0.4, 2.3, 1.85))
@@ -271,9 +232,7 @@ for tx in (-3.0, 3.0):
     torch_light.data.energy = 12
     torch_light.data.color = (1.0, 0.55, 0.15)
 
-# ---------------------------------------------------------------------------
-# Camera
-# ---------------------------------------------------------------------------
+# cámara
 for obj in list(bpy.context.scene.objects):
     if obj.type == 'CAMERA' and obj.name.startswith("LP_"):
         bpy.data.objects.remove(obj, do_unlink=True)
@@ -286,9 +245,7 @@ cam.rotation_euler = (math.radians(68), 0, 0)
 cam.data.lens = 35
 bpy.context.scene.camera = cam
 
-# ---------------------------------------------------------------------------
-# World
-# ---------------------------------------------------------------------------
+# fondo oscuro tipo tumba
 world = bpy.data.worlds.get("World") or bpy.data.worlds.new("World")
 bpy.context.scene.world = world
 world.use_nodes = True
@@ -297,7 +254,5 @@ if bg:
     bg.inputs["Color"].default_value    = (0.06, 0.05, 0.08, 1.0)
     bg.inputs["Strength"].default_value = 0.3
 
-print("")
-print("=== LevelPreview scene built ===")
-print("Switch to Rendered view (Z → Rendered) to see the colours.")
-print("Run 05_render_hq.py to save PNG files.")
+print("\nLevelPreview listo. Cambiar a vista Rendered (Z) para ver colores.")
+print("Correr 05_render_hq.py para guardar PNGs.")
