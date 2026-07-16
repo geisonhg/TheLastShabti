@@ -11,13 +11,13 @@
 
 ## 2. Brief Concept
 
-The player controls a small shabti statue called Nebu that has woken up inside an unfinished pyramid. Shabti statues were small figurines placed in Egyptian tombs to serve the dead. I liked the idea that one of them wakes up and has to find its way out. The game is a simple third-person platformer. There is no story dialogue or combat — the environment communicates the idea: the player starts in a dark tomb and gradually moves toward the light as they climb higher.
+The idea came from thinking about what shabti statues actually were — small figurines placed in tombs to do the work of the dead in the afterlife. I liked the image of one waking up confused inside an unfinished pyramid and just trying to get out. The game is a simple third-person platformer. No combat, no dialogue — just climbing. The environment does most of the storytelling: you start in a dim, cold blue tomb and as you go higher the light gets warmer until you reach open sky at the top.
 
 ---
 
 ## 3. Player Objective
 
-Reach the Sun Altar at the top of the pyramid. The route goes through five connected sections, each one higher and slightly warmer in lighting than the last. There is one checkpoint midway through the level.
+Get to the Sun Altar at the top of the pyramid. The path goes through five sections, each one higher than the last. There's a checkpoint about halfway through so if you fall in the harder parts you don't have to redo everything.
 
 ---
 
@@ -29,102 +29,108 @@ Reach the Sun Altar at the top of the pyramid. The route goes through five conne
 | Jump   | Space |
 | Camera | Mouse (drag) |
 
-Controls are shown on screen at the start of the level.
+The controls appear on screen at the start of the level.
 
 ---
 
 ## 5. Level Structure
 
-The level is divided into five connected sections. The route always goes upward — the player never needs to backtrack.
+Five sections, always going upward. The player never needs to backtrack.
 
 ### Section 1 — Burial Chamber
-The starting area. Lighting is dark blue and dim. The player learns to move and jump using two easy platform gaps and a short staircase (four steps). Burial jars, wall torches and a scarab decoration establish the visual theme. A stone archway at the far end leads forward.
+The starting room. Dark blue lighting, very dim. Two small platform gaps and a short staircase introduce the controls without pressure. Burial jars, wall torches and a scarab panel set the visual theme. A stone archway leads through to the next section.
 
 ### Section 2 — Collapsed Gallery
-A wider corridor with an uneven floor. Some sections of the floor have broken away, so the player needs to jump across three platform gaps. A sandstone ramp gives access to a higher route. Two fallen broken columns serve as visual landmarks so the player always knows where they are.
+A wider corridor where part of the floor has broken away. Three gap jumps across the broken sections, with a sandstone ramp leading up to a higher path. A couple of broken columns help the player orient themselves.
 
 ### Section 3 — Hall of Weights
-This room introduces timed obstacles. There is a moving platform that slides left and right on a sine-wave cycle, a rotating stone hazard in the centre of the room, and a falling block above one of the approach platforms. I kept it to three obstacle types because adding more would make the room confusing. The rhythm is: wait, move when safe, jump.
+First room with moving obstacles. There's a platform sliding left and right, a stone block rotating in the middle of the room, and a block that drops from above one of the approach platforms. I kept it to three hazards because the room would get confusing with more. The idea is to read the rhythm, wait, then move.
 
 ### Section 4 — Shaft of Ra
-A tall narrow vertical section. The player climbs upward using a series of seven zigzag platforms at staggered heights plus one vertical moving platform. Warm orange light comes from an opening at the top. There is a checkpoint (CP_ShaftEntry) here so the player does not have to repeat Sections 1–3 if they fall in the final section. A gold sphere marks the checkpoint position.
+A tall vertical section. The player zigzags up through seven platforms at different heights, plus one platform moving vertically. The lighting shifts to warm orange here. There's a checkpoint at the bottom of the shaft so falling in Section 5 doesn't send you all the way back.
 
 ### Section 5 — Rooftop Sun Altar
-The exterior of the pyramid. The lighting is warm and the sky is open. Four obelisks and two broken columns frame the approach. The player makes two or three final jumps to reach the Sun Altar. Touching the altar trigger fires the win message: *"THE SUN SEAL HAS BEEN RESTORED."*
+The top of the pyramid. Open sky, warm lighting. Four obelisks and some broken columns frame the final approach. Two or three jumps to the altar, which triggers the win message: *"THE SUN SEAL HAS BEEN RESTORED."*
 
 ---
 
 ## 6. Character Design
 
-Nebu is a small painted stone shabti. I kept the proportions simple because I wanted the character to be readable from the third-person camera and achievable to model. The head is slightly oversized, which is common in stylised game characters and makes the face easier to read.
+Nebu is a small stone shabti statue — the player character. I kept the shape simple and a bit stylised because I needed it to be readable from a third-person camera and realistic to model in Blender. The head is slightly large for the body, which is a common shortcut in game character design to make the face more visible from a distance.
 
-I gave Nebu:
-- A Nemes headdress with two lappets hanging beside the face
-- A turquoise collar and belt detail, based on the colours used in real Egyptian artefacts
+Details I included:
+- A Nemes headdress with two lappets hanging at the sides
+- Turquoise collar and waist band, based on colours used in real Egyptian artefacts
 - A small gold scarab on the chest
 - Carved eyes with extended kohl lines
 
-The character was built from around 20 separate mesh objects combined under one root empty in Blender. The body uses `bmesh` vertex extrusion and scaling. The headdress lappets are thin extruded planes shaped with edge loops. The scarab legs were created with individual cylinders rotated along a circle and merged.
+The character is around 20 separate mesh objects parented under one empty in Blender. The body was built with `bmesh` extrusion and loop scaling. The headdress lappets are thin planes with edge loops to shape them. The scarab legs are individual cylinders rotated in a circle and merged.
 
 ---
 
 ## 7. Blender Assets Created
 
-All assets were made in Blender 4.5.3 LTS using Python scripting (`bpy` and `bmesh`). Geometry was built procedurally — no external textures, downloaded models or add-on packs were used.
+All assets were made in Blender 4.5.3 using Python scripting (`bpy` and `bmesh`). Everything was built procedurally — no external textures, downloaded models or add-ons.
 
 | Name | Description |
 |------|-------------|
 | CH_Nebu.fbx | Player character — shabti statue, ~20 mesh parts |
 | ENV_SandstonePlatform.fbx | Main modular platform block with bevelled edges |
-| ENV_Stair.fbx | Single modular stair step — duplicated in Unity to build flights |
-| ENV_Ramp.fbx | Wedge-shaped ramp used in the Collapsed Gallery |
-| ENV_Archway.fbx | Two pillars with lintel — used at section transitions |
-| PROP_BrokenColumn.fbx | 8-sided cylinder with irregular broken top and base ring |
-| PROP_Obelisk.fbx | Tapered rectangular column with gold pyramidion cap |
-| PROP_BurialJar.fbx | Ceramic jar with rounded belly, narrow neck and lid |
-| PROP_WallTorch.fbx | Wall bracket, cup and stylised flame cone |
+| ENV_Stair.fbx | Single stair step, duplicated in Unity to build the full staircase |
+| ENV_Ramp.fbx | Wedge ramp used in the Collapsed Gallery |
+| ENV_Archway.fbx | Two pillars with a lintel — used at the transitions between sections |
+| PROP_BrokenColumn.fbx | 8-sided column with a rough broken top |
+| PROP_Obelisk.fbx | Tapered rectangular column with a gold pyramidion cap |
+| PROP_BurialJar.fbx | Ceramic jar with a rounded belly, narrow neck and lid |
+| PROP_WallTorch.fbx | Wall bracket with a cup and stylised flame |
 | PROP_ScarabWall.fbx | Flat panel with raised scarab geometry and turquoise wings |
-| PROP_SunAltar.fbx | Three-tier altar with gold sun disc and rays — the goal object |
+| PROP_SunAltar.fbx | Three-tier altar with a gold sun disc and rays — the goal object |
 
-Total: 11 FBX files exported and imported into Unity.
+11 FBX files total, all exported and imported into Unity.
 
 ---
 
 ## 8. Use of Materials and Lighting
 
-I used Principled BSDF materials in Blender with solid base colours — no image textures. In Unity, 10 URP Lit materials were created that mirror the Blender palette.
+Principled BSDF materials in Blender with flat base colours — no image textures. In Unity I created 10 URP Lit materials that match the Blender palette.
 
 | Material | Approximate colour | Used for |
 |----------|--------------------|----------|
 | MAT_Sandstone | #C4A265 warm tan | Platforms, archways, stairs, ramp |
 | MAT_StoneBlue | #708AA0 grey-blue | Nebu body, pillars, columns, scarab wall |
 | MAT_Turquoise | #489090 teal | Collar, belt, burial jars |
-| MAT_GoldAccent | #C8A82E warm gold | Scarab, pyramidion, sun disc, rays |
+| MAT_GoldAccent | #C8A82E warm gold | Scarab, pyramidion cap, sun disc, rays |
 | MAT_DarkBrown | #261408 near-black | Carved details, kohl lines |
 | MAT_Clay | #8C6148 terracotta | Burial jar body |
 | MAT_TorchFire | #FF8020 orange, emissive | Torch flame — glows in Play mode |
 | MAT_TombBlue | #2A3B4C dark blue | Tomb walls and ceiling |
 | MAT_Obstacle | #A05020 dark orange | Moving platforms and rotating hazard |
-| MAT_Player | #8894A0 light blue-grey | Player capsule |
+| MAT_Player | #8894A0 light blue-grey | Player character |
 
-Lighting in Unity transitions from cold blue (Sections 1–2) through neutral (Section 3) to warm orange (Sections 4–5). Six light objects: one main directional, one directional for the tomb interior, plus four point lights (cold fill in the tomb, warm fill in the Hall of Weights, orange shaft light, gold altar glow).
+Lighting transitions from cold blue in Sections 1–2, through neutral in Section 3, to warm orange in Sections 4–5. Six lights in total: one main directional, one interior directional for the tomb, and four point lights placed at key moments (cold fill in the tomb, warm fill in the Hall of Weights, orange shaft glow, gold altar light at the top).
 
 ---
 
 ## 9. Obstacles
 
-The Obstacle Course Pack was not available in my Unity installation. I wrote two short scripts that cover the same design role:
+The project uses the **Obstacle Course Pack** from the Unity Asset Store. The pack's `CharacterControls` script handles the player movement and the `CameraManager` handles the third-person camera.
 
-| Script | Behaviour | Where placed |
-|--------|-----------|-------------|
-| `MovingPlatform.cs` | Moves back and forth using a sine-wave on a chosen axis (X, Y, or Z). Distance and speed are configurable in the Inspector. | S3 Hall of Weights (X axis), S4 Shaft of Ra (Y axis) |
-| `RotatingHazard.cs` | Rotates continuously around the Y axis at a configurable speed in degrees per second. | S3 Hall of Weights centre |
+For obstacle movement I used a mix of OCP scripts and two short scripts I wrote myself:
+
+| Script | Source | Behaviour | Where placed |
+|--------|--------|-----------|-------------|
+| `MovableObs.cs` | OCP | Moves an object back and forth on the X or Z axis. | S3 horizontal sliding platform |
+| `Rotator.cs` | OCP | Rotates continuously around the Z axis. | S3 rotating stone hazard |
+| `MovingPlatform.cs` | Custom | Same as MovableObs but supports Y axis movement, using a sine-wave. | S4 vertical moving platform and OBS_FallingBlock |
+| `RotatingHazard.cs` | Custom | Rotates on the Y axis in world space at configurable degrees per second. | S3 Hall of Weights centre |
+
+I wrote the two custom scripts because OCP's `MovableObs` only moves horizontally (X or Z) and `Rotator` uses the Z axis in local space — neither of those worked for the falling block in Section 3 or the Y-axis rotation I needed for the central hazard.
 
 ---
 
 ## 10. Unity Implementation
 
-The project uses **Unity 6 (6000.2.10f1)** with Universal Render Pipeline (URP 17.2.0). The entire scene was built programmatically using a custom Unity Editor script (`Assets/Editor/LevelBuilder.cs`) run in batch mode. The scene contains 87 GameObjects.
+The project uses **Unity 6 (6000.2.10f1)** with Universal Render Pipeline (URP 17.2.0). The scene was built using a custom Editor script (`Assets/Editor/LevelBuilder.cs`). The scene has 87 GameObjects.
 
 Scene hierarchy:
 ```
@@ -135,8 +141,7 @@ LVL_MainPyramid (scene)
 │   ├── S3_HallOfWeights
 │   ├── S4_ShaftOfRa
 │   └── S5_RooftopAltarSection
-├── Player (CharacterController + PlayerController + CameraRig)
-├── CameraRig / Main Camera
+├── Player (OCP CharacterControls + CameraManager)
 ├── CheckpointManager
 ├── Lighting (6 lights)
 ├── KillPlane (Y = -8, isTrigger)
@@ -146,45 +151,43 @@ LVL_MainPyramid (scene)
     └── WinPanel
 ```
 
-Custom scripts written for the project:
+Custom scripts written for this project:
 
 | Script | Purpose |
 |--------|---------|
-| `PlayerController.cs` | WASD camera-relative movement, Space to jump. |
-| `CameraRig.cs` | Third-person orbit camera. Mouse X/Y rotates yaw and pitch, follows the player. |
-| `GoalTrigger.cs` | Activates WinPanel and pauses the game when the player reaches the altar. |
-| `CheckpointManager.cs` | Singleton that stores the last activated checkpoint position. |
-| `CheckpointZone.cs` | OnTriggerEnter — saves the player position via CheckpointManager. |
+| `GoalTrigger.cs` | Activates the WinPanel and pauses the game when the player reaches the altar. |
+| `CheckpointManager.cs` | Stores the last activated checkpoint position. |
+| `CheckpointZone.cs` | Saves the player position when they walk through a checkpoint trigger. |
 | `PlayerRespawn.cs` | Teleports the player back to the checkpoint when they fall below the kill plane. |
-| `MovingPlatform.cs` | Sine-wave platform movement on a configurable axis. |
+| `MovingPlatform.cs` | Sine-wave movement on a configurable axis (X, Y, or Z). |
 | `RotatingHazard.cs` | Continuous Y-axis rotation at configurable degrees per second. |
 
 ---
 
 ## 11. Challenges Encountered
 
-**Blender Eevee API change**: When I ran the render script, Blender threw an error about `use_soft_shadows` not existing. It turns out Blender 4.2 replaced Eevee with Eevee Next and removed that property. Removing the line fixed it.
+**Blender Eevee API change**: Running the render script gave an error about `use_soft_shadows` not existing. Blender 4.2 replaced Eevee with Eevee Next and removed that property. Removing the line fixed it.
 
-**FBX axis orientation**: The first exports came into Unity rotated 90 degrees. Adding `axis_forward='-Z', axis_up='Y'` to the export call fixed the orientation.
+**FBX axis orientation**: First exports came into Unity rotated 90 degrees. Adding `axis_forward='-Z', axis_up='Y'` to the export call fixed the orientation without needing any extra rotation in Unity.
 
-**Unity in terminal mode**: Running Unity from WSL terminal produced a lot of licence server errors in the log. The build still completed and the exit code was 0 — the messages were just noise from Unity not being able to reach the licence server through the terminal session.
+**Unity in terminal mode**: Running Unity from a WSL terminal produced a lot of licence server errors in the log. The build still finished and the exit code was 0 — the messages were just noise from Unity not reaching the server through the terminal session.
 
-**Obstacle Course Pack missing**: The pack was not installed so I wrote the two movement scripts myself. They are simple but they do the job — the obstacles move and rotate correctly in Play mode.
+**MovableObs only moves on X/Z**: The OCP script doesn't support vertical movement. OBS_FallingBlock needed to drop down on the Y axis so I wrote MovingPlatform with configurable axis support.
 
-**Input System conflict**: Unity 6 ships with the New Input System package enabled. The player script uses the old `Input.GetAxis` API. If WASD does not respond, the fix is: **Edit > Project Settings > Player > Active Input Handling → Both**.
+**Input System conflict**: Unity 6 ships with the New Input System enabled by default. The OCP movement scripts use the legacy `Input.GetAxis` API. Fix: **Edit > Project Settings > Player > Active Input Handling → Both**.
 
-**Burial jar rim**: The vertex loop scaling for the jar's top rim produced small irregularities. A `bmesh.ops.smooth_vert` pass on that loop evened it out before export.
+**Burial jar rim geometry**: The bmesh vertex loop scaling for the jar's top rim produced small irregularities. A `bmesh.ops.smooth_vert` pass on that loop fixed it before export.
 
 ---
 
 ## 12. Improvements I Would Make With More Time
 
-- Add a walk and jump animation cycle for Nebu using a simple armature. Even two keyframes would make the character feel more alive.
-- Add ambient sound: stone echoes in the tomb sections, wind on the rooftop.
-- Create a second platform variation with different proportions so not every surface looks identical.
-- Make the lighting transition gradual instead of jumping per section — a `RenderSettings.ambientLight` lerp tied to the player's Y position.
-- Add a pause menu and a restart-from-checkpoint button on the win panel.
-- Replace the player capsule with CH_Nebu.fbx as the visible character mesh.
+- Add a walk and jump animation cycle for Nebu. Even two keyframes would make it feel more alive.
+- Add sound — stone echoes in the tomb sections and open-sky wind on the rooftop.
+- A second platform shape with different proportions so not every surface looks the same.
+- Gradual lighting transition instead of a hard cut per section — a coroutine lerping `RenderSettings.ambientLight` based on the player's Y position.
+- Pause menu and a restart button on the win screen.
+- Swap the player capsule for the Nebu mesh as the visible character.
 
 ---
 
@@ -220,22 +223,22 @@ Blend file saved with all objects, materials, cameras and render settings intact
 **Blender render — Nebu three-quarter view**
 
 `Documentation/Screenshots/Screenshot 2026-07-15 213706.png`
-*Nebu from a three-quarter angle showing the back headdress cloth and side profile.*
+*Nebu from a three-quarter angle showing the back of the headdress and side profile.*
 
 **Blender render — Environment assets overview**
 
 `Documentation/Screenshots/Screenshot 2026-07-16 125808.png`
-*All 10 environment and prop assets arranged in a single Blender scene for review.*
+*All 10 environment and prop assets arranged together for review.*
 
 **Blender render — Level scene**
 
 `Documentation/Screenshots/Screenshot 2026-07-16 125919.png`
-*Composed level preview showing the staircase, gap platforms, archway and Nebu placed at the start.*
+*Composed level preview: staircase, gap platforms, archway and Nebu at the start position.*
 
 **2D Level Map**
 
 `Documentation/Map/level_map.svg`
-*Side-elevation map of all five sections with platform symbols, route arrows, checkpoint marker and section labels.*
+*Side-elevation map of all five sections with platform positions, route arrows, checkpoint marker and section labels.*
 
 ---
 
@@ -244,12 +247,12 @@ Blend file saved with all objects, materials, cameras and render settings intact
 | Item | Value |
 |------|-------|
 | Engine | Unity 6 (6000.2.10f1) |
-| Render pipeline | Universal Render Pipeline (URP) 17.2.0 |
+| Render pipeline | Universal Render Pipeline (URP 17.2.0) |
 | Blender version | 4.5.3 LTS |
 | Target platform | Windows x86_64 |
 | FBX models | 11 |
 | Unity materials | 10 |
-| Custom scripts | 8 |
+| Custom scripts | 6 |
 
 ---
 

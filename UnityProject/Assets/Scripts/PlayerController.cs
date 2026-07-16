@@ -1,11 +1,5 @@
 using UnityEngine;
 
-// Third-person player controller for The Last Shabti.
-// Uses CharacterController — attach to a Capsule with a CharacterController component.
-// Camera is a child of CameraRig which follows the player; rotate camera with the mouse.
-//
-// NOTE: The Obstacle Course Pack was not available for this project.
-// This script is a short custom replacement following the same brief requirements.
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
